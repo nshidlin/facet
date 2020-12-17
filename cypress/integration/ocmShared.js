@@ -12,6 +12,8 @@ export const loginOCM = (userName, password) => {
   // cy.visit does not direct to the correct env based on baseUrl query string
   const visitOptions = INTEGRATION_ENV ? { qs: { env: 'integration' } } : {};
 
+  visitOptions.retryOnStatusCodeFailure = true
+  
   cy.visit('', visitOptions);
   cy.get('#username').should('be.visible');
   cy.get('#username').type(userName);
